@@ -1,0 +1,92 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Flutter (FVM) - Pub Get",
+            "type": "shell",
+            "command": "fvm",
+            "args": [
+                "flutter",
+                "pub",
+                "get"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Flutter (FVM) - Clean",
+            "type": "shell",
+            "command": "fvm",
+            "args": [
+                "flutter",
+                "clean"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Flutter (FVM) - Build Web",
+            "type": "shell",
+            "command": "fvm",
+            "args": [
+                "flutter",
+                "build",
+                "web"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Flutter (FVM) - Doctor",
+            "type": "shell",
+            "command": "fvm",
+            "args": [
+                "flutter",
+                "doctor"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Flutter (FVM) - Run Tests",
+            "type": "shell",
+            "command": "fvm",
+            "args": [
+                "flutter",
+                "test"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+} 
