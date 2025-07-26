@@ -79,24 +79,38 @@ class _HomePageState extends State<HomePage> {
               ),
             
               //*** LIST_CATEGORY */
-              SizedBox(height: 20,),
+              // SizedBox(height: 20,),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
                 child: _buildListCategory(),
               ),
               
               //*** ARRIVAL */
-              SizedBox(height: 20,),
+              // SizedBox(height: 20,),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
                 child: _buildArival(),
               ),
             
               //*** ARRIVAL_LIST */
-              SizedBox(height: 20,),
+              // SizedBox(height: 20,),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
                 child: _buildArrivalList(),
+              ),
+
+              //*** BRANDS */
+              // SizedBox(height: 20,),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                child: _buildBrands(),
+              ),
+
+              //*** RECOMMENDATE */
+              // SizedBox(height: 20,),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+                child: _buildBrandList(),
               ),
 
               //*** RECOMMENDATE */
@@ -211,13 +225,31 @@ class _HomePageState extends State<HomePage> {
             icon: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.person),
+                Icon(Icons.shopping_bag),
                 Container(
                   margin: EdgeInsets.only(top: 4),
                   height: 3,
                   width: 24,
                   decoration: BoxDecoration(
                     color: _currentIndex == 3 ? Colors.black : Colors.transparent,
+                    borderRadius: BorderRadius.circular(2),
+                  ),
+                ),
+              ],
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.person),
+                Container(
+                  margin: EdgeInsets.only(top: 4),
+                  height: 3,
+                  width: 24,
+                  decoration: BoxDecoration(
+                    color: _currentIndex == 4 ? Colors.black : Colors.transparent,
                     borderRadius: BorderRadius.circular(2),
                   ),
                 ),
@@ -237,93 +269,116 @@ class _HomePageState extends State<HomePage> {
         'name': 'Murad',
         'name_product': 'Yotinol Youth',
         'description': 'Simplify mobile shopping with our product\ncheckout prototype for Flawle! \nEnhance user experience, reduce cart abandonment, and boost conversions.',
-        'images': 'assets/images/product4.jpg',
+        'images': 'assets/images/img1.png',
         'button_description': '17 % | Buy now'
       },
       {
         'name': 'Murad',
         'name_product': 'Yotinol Youth',
         'description': 'Simplify mobile shopping with our product\ncheckout prototype for Flawle! \nEnhance user experience, reduce cart abandonment, and boost conversions.',
-        'images': 'assets/images/product4.jpg',
+        'images': 'assets/images/img2.png',
         'button_description': '12 % | Buy now'
       },
       {
         'name': 'Murad',
         'name_product': 'Yotinol Youth',
         'description': 'Simplify mobile shopping with our product\ncheckout prototype for Flawle! \nEnhance user experience, reduce cart abandonment, and boost conversions.',
-        'images': 'assets/images/product4.jpg',
+        'images': 'assets/images/img3.png',
         'button_description': '15 % | Buy now'
       },
       {
         'name': 'Murad',
         'name_product': 'Yotinol Youth',
         'description': 'Simplify mobile shopping with our product\ncheckout prototype for Flawle! \nEnhance user experience, reduce cart abandonment, and boost conversions.',
-        'images': 'assets/images/product4.jpg',
+        'images': 'assets/images/img4.png',
         'button_description': '18 % | Buy now'
       },
     ];
+    final List<Color> bannerColors = [
+      const Color.fromRGBO(127, 209, 79, 1.0), // vert
+      const Color.fromARGB(255, 241, 132, 45),  // jaune
+      const Color.fromARGB(255, 124, 109, 102),  // rouge
+      const Color.fromARGB(255, 100, 39, 3), // bleu
+    ];
     return SizedBox(
-      height: 220,
+      height: 280,
       child: ListView.separated(
         itemBuilder: (context, index) {
           Map<String, dynamic> banner = banners[index];
+          final color = index < bannerColors.length ? bannerColors[index] : bannerColors.last;
           return Container(
-            height: 200,
+            height: 250,
             width: 340,
             decoration: BoxDecoration(
-              color: Colors.grey,
+              color: color,
               borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                image: AssetImage(
-                  banner['images'],
-                  
-                ),
-                fit: BoxFit.cover
-                ),
             ),
             child: Padding(
               padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
                 children: [
-                  Text(
-                    banner['name'],
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.normal
+                  // Texte à gauche
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          banner['name'],
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.normal
+                          ),
+                        ),
+                        Text(
+                          banner['name_product'],
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25
+                          ),
+                        ),
+                        Text(
+                          banner['description'],
+                          style: TextStyle(
+                            color: const Color.fromARGB(77, 0, 0, 0),
+                            fontWeight: FontWeight.w500
+                          ),
+                        ),
+                        SizedBox(height: 6,),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(color.withOpacity(0.0)),
+                          ),
+                          onPressed: (){}, 
+                          child: Text(
+                            banner['button_description'],
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Text(
-                    banner['name_product'],
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 25
-                    ),
-                  ),
-                  Text(
-                    banner['description'],
-                    style: TextStyle(
-                      color: const Color.fromARGB(77, 0, 0, 0),
-                      fontWeight: FontWeight.w500
-                    ),
-                  ),
-                  SizedBox(height: 6,),
-                  ElevatedButton(
-                    onPressed: (){}, 
-                    child: Text(
-                      banner['button_description']
+                  // Image à droite
+                  SizedBox(
+                    width: 120,
+                    height: 160,
+                    child: Image.asset(
+                      banner['images'],
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ],
               ),
             ),
           );
-        }, 
-        separatorBuilder: (context, index) => const SizedBox(width: 16.0,), 
+        },
+        separatorBuilder: (context, index) => const SizedBox(width: 16.0,),
         itemCount: banners.length,
         scrollDirection: Axis.horizontal,
-        ),
+      ),
     );
   }
 
@@ -399,6 +454,70 @@ class _HomePageState extends State<HomePage> {
           );
         }
         ),
+    );
+  }
+
+  Widget _buildBrands(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          "Brands",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontSize: 20,
+          ),
+        ),
+        Text(
+          "See All",
+          style: TextStyle(
+            color: Colors.grey,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBrandList() {
+    final brands = [
+      'assets/images/logo1.png',
+      'assets/images/logo2.png',
+      'assets/images/logo3.png',
+      'assets/images/logo4.png',
+      'assets/images/logo5.png',
+    ];
+    
+    return SizedBox(
+      height: 100,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        separatorBuilder: (context, index) => const SizedBox(width: 16.0,),
+        itemCount: brands.length,
+        itemBuilder: (context, index) {
+          String brand = brands[index];
+          return Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Image.asset(
+                brand,
+                height: 40,
+                width: 80,
+                fit: BoxFit.contain,
+            ),
+          );
+        },
+      ),
     );
   }
 
