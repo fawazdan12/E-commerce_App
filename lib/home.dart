@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'detail_arrival.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -423,7 +424,6 @@ class _HomePageState extends State<HomePage> {
         itemCount: categorylist.length,
         itemBuilder: (context, index) {
           String category = categorylist[index];
-          bool isSelected = selectedCategory == index;
 
           return GestureDetector(
             onTap: (){
@@ -435,17 +435,17 @@ class _HomePageState extends State<HomePage> {
               margin: const EdgeInsets.only(right: 12.0),
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               decoration: BoxDecoration(
-                color: isSelected ? Colors.black : Colors.transparent,
+                color:  Colors.white,
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(
-                  color: isSelected ? Colors.grey : Colors.grey,
+                  color: const Color.fromARGB(97, 158, 158, 158),
                   width: 1.5,
                 ),
               ),
               child: Text(
                 category,
                 style: TextStyle(
-                  color: isSelected ?  Colors.white : Colors.grey,
+                  color: Colors.grey,
                   fontSize: 20,
                   fontWeight: FontWeight.w600
                 ),
@@ -555,19 +555,19 @@ class _HomePageState extends State<HomePage> {
       {
         'image': 'assets/images/product2.jpeg',
         'name': 'Product 2',
-        'price': '\$39.99',
+        'price': '39.99',
         'category': 'Fragrance',
       },
       {
         'image': 'assets/images/product3.jpeg',
         'name': 'Product 3',
-        'price': '\$49.99',
+        'price': '49.99',
         'category': 'Hair',
       },
       {
         'image': 'assets/images/product4.jpg',
         'name': 'Product 4',
-        'price': '\$59.99',
+        'price': '59.99',
         'category': 'Eflacre',
       },
     ];
@@ -603,11 +603,22 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: Stack(
                     children: [
-                      Image.asset(
-                        arrival['image'],
-                        width: 200,
-                        height: 130,
-                        fit: BoxFit.cover,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => DetailArrivals(
+                              name: arrival['name'],
+                              price: double.parse(arrival['price'].substring(1)),
+                              image: arrival['image'],
+                            ),)
+                          );
+                        },
+                        child: Image.asset(
+                          arrival['image'],
+                          width: 200,
+                          height: 130,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       Positioned(
                         top: 8,
@@ -668,7 +679,7 @@ class _HomePageState extends State<HomePage> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 12.0),
                                   child: Text(
-                                    arrival['price'],
+                                    "\$${arrival['price']}",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
@@ -732,19 +743,19 @@ class _HomePageState extends State<HomePage> {
       {
         'image': 'assets/images/rec1.jpg',
         'name': 'Product A',
-        'price': '\$19.99',
+        'price': '19.99',
         'category': 'Skincare',
       },
       {
         'image': 'assets/images/rec2.jpg',
         'name': 'Product B',
-        'price': '\$29.99',
+        'price': '29.99',
         'category': 'Fragrance',
       },
       {
         'image': 'assets/images/rec3.jpg',
         'name': 'Product C',
-        'price': '\$39.99',
+        'price': '39.99',
         'category': 'Hair',
       },
     ];
@@ -779,11 +790,22 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: Stack(
                     children: [
-                      Image.asset(
-                        recommendation['image'],
-                        width: 200,
-                        height: 130,
-                        fit: BoxFit.cover,
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context, MaterialPageRoute(builder: (context) => DetailArrivals(
+                              name: recommendation['name'],
+                              price: double.parse(recommendation['price'].substring(1)),
+                              image: recommendation['image'],
+                            )),
+                          );
+                        },
+                        child: Image.asset(
+                          recommendation['image'],
+                          width: 200,
+                          height: 130,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       Positioned(
                         top: 8,
@@ -844,7 +866,7 @@ class _HomePageState extends State<HomePage> {
                                 Padding(
                                   padding: EdgeInsets.only(left: 12.0),
                                   child: Text(
-                                    recommendation['price'],
+                                    "\$${recommendation['price']}",
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
